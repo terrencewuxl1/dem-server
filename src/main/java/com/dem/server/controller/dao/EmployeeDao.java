@@ -2,7 +2,9 @@ package com.dem.server.controller.dao;
 
 import com.dem.server.controller.bean.Employee;
 import com.dem.server.controller.bean.Employees;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class EmployeeDao {
 
     private static Employees employees = new Employees();
