@@ -11,6 +11,8 @@ public class Employees {
     private List<Employee> employeeList;
 
     public List<Employee> getEmployeeList() {
-        return this.employeeList == null ? new ArrayList<>() : employeeList;
+        if(employeeList==null)
+            employeeList=new ArrayList<>();
+        return employeeList;
     }
 }
