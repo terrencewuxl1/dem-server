@@ -10,9 +10,9 @@ public class EmployeeDao {
     private static Employees employees = new Employees();
 
     static {
-        employees.getEmployeeList().add(new Employee(1, "Lokesh", "Gupta", "howtodoinjava@gmail.com"));
-        employees.getEmployeeList().add(new Employee(2, "Alex", "Kolenchiskey", "abc@gmail.com"));
-        employees.getEmployeeList().add(new Employee(3, "David", "Kameron", "titanic@gmail.com"));
+        employees.getEmployeeList().add(new Employee((long) 1, "Lokesh", "Gupta", "howtodoinjava@gmail.com"));
+        employees.getEmployeeList().add(new Employee((long) 2, "Alex", "Kolenchiskey", "abc@gmail.com"));
+        employees.getEmployeeList().add(new Employee((long) 3, "David", "Kameron", "titanic@gmail.com"));
     }
 
     public Employees getAllEmployees() {

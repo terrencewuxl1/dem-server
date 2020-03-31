@@ -1,14 +1,15 @@
 package com.dem.server.controller;
 
 import com.dem.server.controller.bean.Employee;
-import com.dem.server.controller.bean.Employees;
-import com.dem.server.controller.dao.EmployeeDao;
+import com.dem.server.exception.RecordNotFoundException;
+import com.dem.server.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/employees")
@@ -16,28 +17,31 @@ public class EmployeeController {
 
 
     @Autowired
-    private EmployeeDao employeeDao;
+    private EmployeeService employeeService;
 
-    @GetMapping(path="/all")
-    public Employees getEmployees() {
-        return employeeDao.getAllEmployees();
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<Employee>> getEmployees() {
+        List<Employee> employeeList = employeeService.getAllEmployees();
+        return new ResponseEntity<List<Employee>>(employeeList, new HttpHeaders(), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Object> addEmployee(@RequestBody Employee employee) {
-        Integer id = employeeDao.getAllEmployees().getEmployeeList().size() + 1;
-        employee.setId(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id) throws RecordNotFoundException {
+        Employee employee = employeeService.getEmployeeById(id);
+        return new ResponseEntity<Employee>(employee, new HttpHeaders(), HttpStatus.OK);
+    }
 
-        employeeDao.addEmployee(employee);
-        System.out.println(employeeDao.getAllEmployees().getEmployeeList().size());
 
-        URI location =
-                ServletUriComponentsBuilder.fromCurrentRequest()
-                        .path("{/id}")
-                        .buildAndExpand(employee.getId())
-                        .toUri();
+    @PostMapping
+    public ResponseEntity<Employee> createOrUpdateEmployee(Employee employee) {
+        employeeService.createOrUpdateEmployee(employee);
+        return new ResponseEntity<Employee>(employee, new HttpHeaders(), HttpStatus.OK);
+    }
 
-        return ResponseEntity.created(location).build();
+    @DeleteMapping("{/id}")
+    public HttpStatus deleteEmployeeById(@PathVariable("id") Long id) throws RecordNotFoundException {
+        employeeService.deleteEmployeeById(id);
+        return HttpStatus.FORBIDDEN;
     }
 
 }
