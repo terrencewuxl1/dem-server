@@ -6,13 +6,12 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@AllArgsConstructor
 @Entity
 @Table(name = "TBL_EMPLOYEES")
 public class Employee {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "first_name")

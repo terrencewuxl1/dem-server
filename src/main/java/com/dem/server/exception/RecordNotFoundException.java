@@ -1,13 +1,18 @@
 package com.dem.server.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-public class RecordNotFoundException extends Throwable {
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class RecordNotFoundException extends Exception {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(RecordNotFoundException.class);
+    private static final long serialVersionUID = -1;
 
-    public RecordNotFoundException(String s) {
-        LOGGER.error(s);
+    public RecordNotFoundException(String message) {
+        super(message);
+    }
+
+    public RecordNotFoundException(String message, Throwable throwable) {
+        super(message, throwable);
     }
 }

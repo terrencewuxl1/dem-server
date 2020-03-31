@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 
     @Autowired
-    private EmployeeService employeeService;
+    EmployeeService employeeService;
 
     @GetMapping(path = "/all")
     public ResponseEntity<List<Employee>> getEmployees() {
@@ -32,7 +32,7 @@ public class EmployeeController {
     }
 
 
-    @PostMapping
+    @PostMapping()
     public ResponseEntity<Employee> createOrUpdateEmployee(Employee employee) {
         employeeService.createOrUpdateEmployee(employee);
         return new ResponseEntity<Employee>(employee, new HttpHeaders(), HttpStatus.OK);

@@ -18,7 +18,7 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployees() {
         List<Employee> employeeList = employeeRepository.findAll();
-        return employeeList.size() > 0 ? employeeList : new ArrayList<Employee>();
+        return employeeList.size() > 0 ? employeeList : new ArrayList<>();
     }
 
     public Employee getEmployeeById(Long id) throws RecordNotFoundException {
@@ -31,18 +31,9 @@ public class EmployeeService {
         }
     }
 
-    public void createOrUpdateEmployee(Employee employee) {
-        Optional<Employee> ordinaryEmployee = employeeRepository.findById(employee.getId());
-
-        if (ordinaryEmployee.isPresent()) {
-            Employee newEmployee = ordinaryEmployee.get();
-            newEmployee.setEmail(employee.getEmail());
-            newEmployee.setFirstName(employee.getFirstName());
-            newEmployee.setLastName(employee.getLastName());
-            employeeRepository.save(newEmployee);
-        } else {
-            employeeRepository.save(employee);
-        }
+    public Employee createOrUpdateEmployee(Employee employee) {
+           employee= employeeRepository.save(employee);
+           return employee;
     }
 
     public void deleteEmployeeById(Long id) throws RecordNotFoundException {
