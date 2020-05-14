@@ -1,7 +1,7 @@
 package com.dem.server.services;
 
-import com.dem.server.controller.bean.Employee;
-import com.dem.server.controller.jpa.EmployeeRepository;
+import com.dem.server.entity.Employee;
+import com.dem.server.jpa.EmployeeRepository;
 import com.dem.server.exception.RecordNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

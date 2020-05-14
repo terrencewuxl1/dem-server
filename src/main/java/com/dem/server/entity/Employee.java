@@ -1,4 +1,4 @@
-package com.dem.server.controller.bean;
+package com.dem.server.entity;
 
 import lombok.Data;
 

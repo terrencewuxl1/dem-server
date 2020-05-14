@@ -1,6 +1,6 @@
 package com.dem.server.controller;
 
-import com.dem.server.controller.bean.Employee;
+import com.dem.server.entity.Employee;
 import com.dem.server.exception.RecordNotFoundException;
 import com.dem.server.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;

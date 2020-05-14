@@ -1,6 +1,6 @@
-package com.dem.server.controller.jpa;
+package com.dem.server.jpa;
 
-import com.dem.server.controller.bean.Employee;
+import com.dem.server.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
