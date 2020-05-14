@@ -1,0 +1,8 @@
+jdbcSettings:
+  url: "jdbc:mysql://localhost:3306/DEM"
+  username: "root"
+  password: "wuxl1984"
+  driverClassName: "com.mysql.jdbc.Driver"
+
+outputDirectory: "src/main/java"
+packageName: "com.dem.server.entity"
