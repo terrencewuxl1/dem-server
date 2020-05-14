@@ -32,14 +32,28 @@ public class EmployeeService {
     }
 
     public Employee createOrUpdateEmployee(Employee employee) {
-           employee= employeeRepository.save(employee);
-           return employee;
+        Optional<Employee> entity = employeeRepository.findById(employee.getId());
+
+        if (entity.isPresent()) {
+            Employee curEntity = entity.get();
+            curEntity.setEmail(employee.getEmail());
+            curEntity.setFirstName(employee.getFirstName());
+            curEntity.setLastName(employee.getLastName());
+
+            curEntity = employeeRepository.save(curEntity);
+
+            return curEntity;
+        } else {
+            employee = employeeRepository.save(employee);
+
+            return employee;
+        }
     }
 
     public void deleteEmployeeById(Long id) throws RecordNotFoundException {
-        Optional<Employee> employee = employeeRepository.findById(id);
+        Optional<Employee> entity = employeeRepository.findById(id);
 
-        if (employee.isPresent()) {
+        if (entity.isPresent()) {
             employeeRepository.deleteById(id);
         } else {
             throw new RecordNotFoundException("No employee record exist for given id.");

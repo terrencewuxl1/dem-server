@@ -1,7 +1,7 @@
 package com.dem.server.controller.bean;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
